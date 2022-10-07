@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Sambhav Dave Blogs - All Posts
+{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'blogapp/post.css' %}" />
+  <link rel="stylesheet" href="{% static 'blogapp/all-posts.css' %}" />
+{% endblock %}
+
+{% block content %}
+  <section id="all-posts">
+    <h3>My Posts</h3>
+    <ul>
+      {% include 'blogapp/includes/post.html' %}
+      {% include 'blogapp/includes/post.html' %}
+      {% include 'blogapp/includes/post.html' %}
+      {% include 'blogapp/includes/post.html' %}
+      {% include 'blogapp/includes/post.html' %}
+      {% include 'blogapp/includes/post.html' %}
+    </ul>
+  </section>
+{% endblock %}
