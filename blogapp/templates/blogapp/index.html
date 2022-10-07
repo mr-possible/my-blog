@@ -23,7 +23,9 @@
   <section id="latest-posts">
     <h3>My Latest Posts</h3>
     <ul>
-      {% include 'blogapp/includes/post.html' %}
+      {% for post in posts %}
+        {% include 'blogapp/includes/post.html' %}
+      {% endfor %}
     </ul>
   </section>
 

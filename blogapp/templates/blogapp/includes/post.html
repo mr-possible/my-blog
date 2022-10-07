@@ -1,10 +1,13 @@
+{% load static %}
+
 <li>
   <article class="post">
-    <a href="">
-      <img src="" alt="Some Random Dummy Post 01"
+    <a href="{% url 'post-detail-page' slug=post.slug %}">
+      {% comment %} DONT GIVE SPACE WITH FILTERS - example - using the 'add' below {% endcomment %}
+      <img src="{% static 'blogapp/images/'|add:post.image %}" alt={{ post.image_alt }} 
       <div class="post__content">
-        <h3>Dummy Post !</h3>
-        <p class="post__previewtext">Preview Text</p>
+        <h3>{{ post.title }}</h3>
+        <p class="post__previewtext">{{ post.preview_text }}</p>
       </div>
     </a>
   </article>
