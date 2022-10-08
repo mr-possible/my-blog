@@ -85,4 +85,8 @@ def posts(request):
 
 
 def post_detail(request, slug):
-    return render(request, 'blogapp/post-detail.html')
+    # best practice in python. Basically will give what we want. search and explore about this in google!
+    identified_post = next(post for post in all_posts if post['slug'] == slug)
+    return render(request, 'blogapp/post-detail.html', {
+        'post': identified_post
+    })
