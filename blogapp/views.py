@@ -18,7 +18,10 @@ def posts(request):
 
 
 def post_detail(request, slug):
-    identified_post = get_object_or_404(Post, slug=slug)
-    return render(request, 'blogapp/post-detail.html', {
-        'post': identified_post
-    })
+    try:
+        identified_post = get_object_or_404(Post, slug=slug)
+        return render(request, 'blogapp/post-detail.html', {
+            'post': identified_post
+        })
+    except:
+        return render(request, '404.html')
