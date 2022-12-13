@@ -21,7 +21,8 @@ def post_detail(request, slug):
     try:
         identified_post = get_object_or_404(Post, slug=slug)
         return render(request, 'blogapp/post-detail.html', {
-            'post': identified_post
+            'post': identified_post,
+            "post_tags": identified_post.tags.all()
         })
     except:
         return render(request, '404.html')
