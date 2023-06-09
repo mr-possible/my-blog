@@ -1,10 +1,8 @@
-{% load static %}
-
 <li>
   <article class="post">
     <a href="{% url 'post-detail-page' slug=post.slug %}">
       {% comment %} DONT GIVE SPACE WITH FILTERS - example - using the 'add' below {% endcomment %}
-      <img src="{% static 'blogapp/images/'|add:post.image_name %}" alt={{ post.image_name }} /> 
+      <img src="{{ post.image.url }}" alt="{{ post.title }}" /> 
       <div class="post__content">
         <h3>{{ post.title|title }}</h3>
         <p class="post__previewtext">{{ post.excerpt }}</p>
