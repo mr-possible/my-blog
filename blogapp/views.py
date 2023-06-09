@@ -1,28 +1,31 @@
+from typing import Any, Dict
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-def starting_page(request):
-    latest_posts = Post.objects.all().order_by(
-        "-date")[:3]     # -date means descending order
-    return render(request, 'blogapp/index.html', {
-        "posts": latest_posts
-    })
+class StartingPageView(ListView):
+    template_name = "blogapp/index.html"
+    model = Post
+    context_object_name = "posts"
+    ordering = "-date"
+        
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        data = queryset[:3]
+        return data
+    
+class PostsView(ListView):
+    template_name = "blogapp/all-posts.html"
+    model = Post
+    ordering = "-date"
+    context_object_name = "all_posts"
 
+class SinglePostView(DetailView):
+    template_name = "blogapp/post-detail.html"
+    model = Post
 
-def posts(request):
-    all_posts = Post.objects.all().order_by("-date")
-    return render(request, 'blogapp/all-posts.html', {
-        'all_posts': all_posts
-    })
-
-
-def post_detail(request, slug):
-    try:
-        identified_post = get_object_or_404(Post, slug=slug)
-        return render(request, 'blogapp/post-detail.html', {
-            'post': identified_post,
-            "post_tags": identified_post.tags.all()
-        })
-    except:
-        return render(request, '404.html')
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["post_tags"] = self.object.tags.all()
+        return context
