@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView
 from django.views import View
-from .models import Post
+from .models import Post, Comment
 from .forms import CommentForm 
 
 
@@ -31,7 +31,8 @@ class SinglePostView(View):
         context = {
             "post" : post,
             "post_tags": post.tags.all(),
-            "comment_form": CommentForm()
+            "comment_form": CommentForm(),
+            "comments": Comment.objects.all().order_by("-id")   # descending order of id
         }
         return render(request, "blogapp/post-detail.html", context)
     
@@ -48,6 +49,7 @@ class SinglePostView(View):
         context = {
             "post": post,
             "post_tags": post.tags.all(),
-            "comment_form": comment_form
+            "comment_form": comment_form,
+            "comments": Comment.objects.all().order_by("-id")   # descending order of id
         }
         return render(request, "blogapp/post-detail.html", context)
