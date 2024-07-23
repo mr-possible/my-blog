@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "blogapp"
+version = "0.1.0"
+description = ""
+authors = ["Sambhav Dave <sambhavd4@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.7"
+markdown = "^3.6"
+pygments = "^2.18.0"
+pillow = "^10.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
