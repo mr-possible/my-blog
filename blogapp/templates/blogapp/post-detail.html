@@ -7,6 +7,7 @@
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static 'blogapp/post-detail.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'blogapp/styles.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -26,7 +27,7 @@
     </article>
   </section>
   <main>
-    <p>{{ post.content|linebreaks }}</p>
+    <p>{{ post.content|safe }}</p>
   </main>
   <section id="comments">
     <h2>Comments</h2>

@@ -1,3 +1,4 @@
+import markdown
 from typing import Any, Dict
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
@@ -5,7 +6,7 @@ from django.urls import reverse
 from django.views.generic import ListView
 from django.views import View
 from .models import Post, Comment
-from .forms import CommentForm 
+from .forms import CommentForm
 
 
 class StartingPageView(ListView):
@@ -28,6 +29,8 @@ class PostsView(ListView):
 class SinglePostView(View):
     def get(self, request, slug):
         post = Post.objects.get(slug=slug)
+        md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
+        post.content = md.convert(post.content)
         context = {
             "post" : post,
             "post_tags": post.tags.all(),
