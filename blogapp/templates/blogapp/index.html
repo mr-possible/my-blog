@@ -2,49 +2,49 @@
 {% load static %}
 
 {% block title %}
-  Sambhav Dave - My Blogs
+Sambhav Dave - My Blogs
 {% endblock %}
 
 {% block css_files %}
-  <link rel="stylesheet" href="{% static 'blogapp/post.css' %}" />
-  <link rel="stylesheet" href="{% static 'blogapp/index.css' %}" />
+<link rel="stylesheet" href="{% static 'blogapp/index.css' %}" />
 {% endblock %}
 
 {% block content %}
-  <section id="welcome">
-    <header>
-      <img src="{% static 'blogapp/images/my-pic.jpg' %}" alt="sambhav-dave-thumbnail" />
-      &nbsp;
-      <h2>Welcome !</h2> 
-    </header>
-    <p>Hi, I am Sambhav and I love to write about my learnings in this growing technology industry and some useful tips from random topics for the audience. </p>
-  </section>
+<section id="welcome" class="py-5">
+  <header class="text-center">
+    <img src="{% static 'blogapp/images/my-pic.jpg' %}" alt="sambhav-dave-thumbnail" class="img-fluid" />
+    <h2>Welcome !</h2>
+    <p>
+      Hi, I am Sambhav. I love to write about my learnings in this growing technology
+      industry and some useful tips from random topics for my audience.
+    </p>
+  </header>
+</section>
 
-  <section id="latest-posts">
-    <h3>My Latest Posts</h3>
-    <ul>
+<section id="latest-posts" class="py-5 bg-light">
+  <div class="container">
+    <h1 class="display-4 text-center">My Latest Posts</h1>
+    <div class="row mt-4">
       {% for post in posts %}
+      <div class="col-md-3 mb-4">
         {% include 'blogapp/includes/post.html' %}
+      </div>
       {% endfor %}
-    </ul>
-  </section>
-
-  <section id="about">
-    <div>
-      <h2>About Me</h2>
-      <p>I currently am a post-graduate student at Swansea University, Wales, United Kingdom. </p>
-      <p>
-      Prior to this, I worked as a Test Automation Consultant at Genpact Digital, Bangalore, India. 
-      I have in total of 3 years of IT experience involving backend development and test automation. 
-      Currently, I am exploring Django, Machine Learning and Big Data Engineering.
-      </p>
-      <p>To know more about me, please do follow me on portals given below: </p> 
-      <link>
-      <h3> LinkedIn </h3>
-      <h3> Instagram </h3>
-      </link>
     </div>
-  </section>
+  </div>
+</section>
 
-  
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="display-5">About Me</h2>
+    <hr>
+    <h3 class="h5">I am working remotely as a Senior Automation Test Engineer with a startup making a world class
+      product for clinical transparency solutions for life-sciences and pharma clients across the globe.</h3>
+    <p class="lead">To know more about me, please do follow me on portals given below: </p>
+    <div>
+      <h3><a href="https://www.linkedin.com/in/sambhav-dave" target="_blank">LinkedIn</a></h3>
+      <h3><a href="https://www.instagram.com/sambhav.dave" target="_blank">Instagram</a></h3>
+    </div>
+  </div>
+</section>
 {% endblock %}

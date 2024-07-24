@@ -5,18 +5,17 @@
   Sambhav Dave Blogs - All Posts
 {% endblock %}
 
-{% block css_files %}
-  <link rel="stylesheet" href="{% static 'blogapp/post.css' %}" />
-  <link rel="stylesheet" href="{% static 'blogapp/all-posts.css' %}" />
-{% endblock %}
-
 {% block content %}
-  <section id="all-posts">
-    <h3>My Posts</h3>
-    <ul>
-      {% for post in all_posts %}
-        {% include 'blogapp/includes/post.html' %}
-      {% endfor %}
-    </ul>
+  <section id="all-posts" class="py-5">
+    <div class="container">
+      <h3 class="display-4 text-center">My Posts</h3>
+      <div class="row mt-4">
+        {% for post in all_posts %}
+        <div class="col-md-6 mb-4">
+          {% include 'blogapp/includes/post.html' %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </section>
 {% endblock %}

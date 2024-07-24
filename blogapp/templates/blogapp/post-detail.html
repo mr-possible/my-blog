@@ -2,58 +2,38 @@
 {% load static %}
 
 {% block title %}
-  Single Post Detail Page
-{% endblock  %}
+Single Post Detail Page
+{% endblock %}
 
 {% block css_files %}
-  <link rel="stylesheet" href="{% static 'blogapp/post-detail.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'blogapp/styles.css' %}">
+<link rel="stylesheet" href="{% static 'blogapp/post-detail.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'blogapp/styles.css' %}">
 {% endblock %}
 
 {% block content %}
+<div class="container mt-4">
   <section id="summary">
-    <h2>{{ post.title }}</h2>
-    <div>
+    <h1 class="display-4">{{ post.title }}</h1>
+    <h2 class="h5 text-muted">{{ post.excerpt }}</h2>
+    <div class="mb-3">
       {% for tag in post_tags %}
-        <span class="tag">#{{ tag.caption }}</span>
+      <span class="class="badge badge-primary">#{{ tag.caption }}</span>
       {% endfor %}
     </div>
     <article>
-      <img src="{{ post.image.url }}" alt="{{ post.title }}" />
       <address>By <a href="mailto:{{ post.author.email_address }}">{{ post.author }}</a></address>
       <div>
-        Created on <time>{{ post.date|date:'D d M Y' }}</time>
+        Created on <time>{{ post.date | date:'D d M Y' }}</time>
       </div>
     </article>
   </section>
-  <main>
-    <p>{{ post.content|safe }}</p>
-  </main>
-  <section id="comments">
-    <h2>Comments</h2>
-    <div>
-      {% for comment in comments %}
-        <ul>
-          <div class="comment-container">
-            <li id="comment-content">{{ comment.text }}</li>
-            <p id="comment-author"> - <i>{{ comment.user_name }}</i></p>
-          </div>
-        </ul>
-      {% endfor %}
-    </div>
+  
+  <section class="mt-4">
+    {{ post.content|safe }}
   </section>
-  <section id="comment-form">
-    <h2 align="center">Your Comment</h2>
-    <form action="{% url "post-detail-page" post.slug %}" method="POST">
-      {% csrf_token %}
-      {% for form_field in comment_form %}
-      <div class="form-control {% if form_field.errors %}invalid{% endif %}">
-        {{ form_field.label_tag }}
-        {{ form_field }}
-        {{ form_field.errors }}
-      </div>
-      {% endfor %}
-      <button>Save Comment</button>
-    </form>
+  
+  <section class="mt-4">
+    <h3 class="h6"><strong>Want to share?</strong></h3>
   </section>
-{% endblock  %}
+</div>
+{% endblock %}
