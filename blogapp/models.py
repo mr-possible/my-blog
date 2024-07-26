@@ -14,24 +14,25 @@ class Tag(models.Model):
 class Author(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email_address = models.EmailField(default='')
+    email_address = models.EmailField(default="")
 
     def full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        return f"{self.first_name} {self.last_name}"
 
     def __str__(self):
         return self.full_name()
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=150) 
+    title = models.CharField(max_length=150)
     excerpt = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='posts', null=True)
+    image = models.ImageField(upload_to="posts", null=True)
     date = models.DateField(auto_now=True)
     slug = models.SlugField(unique=True, db_index=True)
     content = models.TextField(validators=[MinLengthValidator(20)])
     author = models.ForeignKey(
-        Author, null=True, on_delete=models.SET_NULL, related_name="posts")
+        Author, null=True, on_delete=models.SET_NULL, related_name="posts"
+    )
     tags = models.ManyToManyField(Tag)
 
 

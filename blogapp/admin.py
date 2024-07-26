@@ -3,8 +3,16 @@ from .models import Post, Author, Tag
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_filter = ("author", "date", "tags",)
-    list_display = ("title", "author", "date",)
+    list_filter = (
+        "author",
+        "date",
+        "tags",
+    )
+    list_display = (
+        "title",
+        "author",
+        "date",
+    )
     prepopulated_fields = {"slug": ("title",)}
 
 

@@ -14,17 +14,19 @@ class StartingPageView(ListView):
     model = Post
     context_object_name = "posts"
     ordering = "-date"
-        
+
     def get_queryset(self):
         queryset = super().get_queryset()
         data = queryset[:3]
         return data
-    
+
+
 class PostsView(ListView):
     template_name = "blogapp/all-posts.html"
     model = Post
     ordering = "-date"
     context_object_name = "all_posts"
+
 
 class SinglePostView(View):
     def get(self, request, slug):
@@ -32,13 +34,13 @@ class SinglePostView(View):
         md = markdown.Markdown(extensions=["fenced_code", "codehilite"])
         post.content = md.convert(post.content)
         context = {
-            "post" : post,
+            "post": post,
             "post_tags": post.tags.all(),
             "comment_form": CommentForm(),
-            "comments": Comment.objects.all().order_by("-id")   # descending order of id
+            "comments": Comment.objects.all().order_by("-id"),  # descending order of id
         }
         return render(request, "blogapp/post-detail.html", context)
-    
+
     def post(self, request, slug):
         comment_form = CommentForm(request.POST)
         post = Post.objects.get(slug=slug)
@@ -46,13 +48,11 @@ class SinglePostView(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            return HttpResponseRedirect(
-                reverse("post-detail-page", args=[slug])
-            )
+            return HttpResponseRedirect(reverse("post-detail-page", args=[slug]))
         context = {
             "post": post,
             "post_tags": post.tags.all(),
             "comment_form": comment_form,
-            "comments": Comment.objects.all().order_by("-id")   # descending order of id
+            "comments": Comment.objects.all().order_by("-id"),  # descending order of id
         }
         return render(request, "blogapp/post-detail.html", context)
