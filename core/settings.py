@@ -137,7 +137,11 @@ MEDIA_URL = '/files/'
 AWS_STORAGE_BUCKET_NAME = "sambhav-blog-assets"
 AWS_S3_REGION = "ap-south-1"
 AWS_ACCESS_KEY_ID = "AKIAVRUVT52I6YCR5LIA"
-AWS_SECRET_ACCESS_KEY_ID = "15GOTXTjvSRfuLuGS2boMEpH+yU77ZtftcfL9CSc"
+AWS_SECRET_ACCESS_KEY = "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"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_FOLDER = "static"
+MEDIAFILES_FOLDER = "media"
+
+STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
+DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
