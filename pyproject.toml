@@ -13,9 +13,14 @@ pygments = "^2.18.0"
 pillow = "^10.4.0"
 django-storages = "^1.14.4"
 boto3 = "^1.34.149"
-pylint = "^3.2.6"
-black = "^24.4.2"
 
+[tool.poetry.group.dev.dependencies]
+autohooks = "^24.2.0"
+autohooks-plugin-black = "^23.10.0"
+
+[tool.autohooks]
+mode = "poetry_multiline"
+pre-commit = ["autohooks.plugins.black"]
 
 [build-system]
 requires = ["poetry-core"]
