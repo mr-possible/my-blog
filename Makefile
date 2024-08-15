@@ -13,3 +13,7 @@ run-server:
 .PHONY: superuser
 superuser:
 	poetry run python manage.py createsuperuser
+
+.PHONY: collect-static
+collect-static:
+	poetry run python manage.py collectstatic
