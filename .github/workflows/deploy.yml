@@ -17,6 +17,9 @@ jobs:
       - name: Set up Python and Install Poetry
         run: pipx install poetry
 
+      - name: Disable default virtual environment creation
+        run: poetry config virtualenvs.create false
+
       - name: Setting up python and caching using Poetry
         uses: actions/setup-python@v5
         with:
