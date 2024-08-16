@@ -61,10 +61,21 @@ jobs:
           --source-bundle S3Bucket="${{ vars.EB_S3_BUCKET_NAME }}",S3Key="${{ env.DEPLOY_PACKAGE_NAME }}" \
           --version-label "${{ env.VERSION_NAME }}"
 
-      - name: Deploy new app
+      - name: Deploy new app and set environment variables
         run: |
-          aws elasticbeanstalk update-environment --environment-name ${{ vars.EB_ENVIRONMENT_NAME }} --version-label "${{ env.VERSION_NAME }}" \
-          --option-settings Namespace=aws:elasticbeanstalk:application:environment,OptionName=DJANGO_SECRET_KEY,Value="${{ secrets.DJANGO_SECRET_KEY }}"
+          aws elasticbeanstalk update-environment \
+            --environment-name ${{ vars.EB_ENVIRONMENT_NAME }} \
+            --version-label "${{ env.VERSION_NAME }}" \
+            --option-settings \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DJANGO_SECRET_KEY,Value="${{ secrets.DJANGO_SECRET_KEY }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=IS_DEVELOPMENT,Value="${{ vars.IS_DEVELOPMENT }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_HOST,Value="${{ secrets.DB_HOST }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PORT,Value="${{ secrets.DB_PORT }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_USERNAME,Value="${{ secrets.DB_USERNAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PASSWORD,Value="${{ secrets.DB_PASSWORD }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=APP_ASSETS_S3_BUCKET_NAME,Value="${{ vars.APP_ASSETS_S3_BUCKET_NAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_S3_CUSTOM_DOMAIN,Value="${{ vars.AWS_S3_CUSTOM_DOMAIN }}"
+
 
       - name: Finish
         run: echo "CD part finished successfully"
