@@ -1,15 +1,14 @@
-import os
+from os import getenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("IS_DEVELOPMENT", True)
+DEBUG = getenv("IS_DEVELOPMENT", True)
 
 ALLOWED_HOSTS = [
     "mr-possible.ap-south-1.elasticbeanstalk.com",
@@ -69,10 +68,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
-        "USER": os.environ.get("DB_USERNAME"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": os.environ.get("DB_PORT"),
+        "USER": getenv("DB_USERNAME"),
+        "PASSWORD": getenv("DB_PASSWORD"),
+        "HOST": getenv("DB_HOST"),
+        "PORT": getenv("DB_PORT"),
     }
 }
 
@@ -123,7 +122,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
 
-APP_ASSETS_S3_BUCKET_NAME = os.environ.get("APP_ASSETS_S3_BUCKET_NAME")
+APP_ASSETS_S3_BUCKET_NAME = getenv("APP_ASSETS_S3_BUCKET_NAME")
 AWS_S3_CUSTOM_DOMAIN = f"{APP_ASSETS_S3_BUCKET_NAME}.s3.amazonaws.com"
 
 STATICFILES_FOLDER = "static"
