@@ -16,4 +16,4 @@ superuser:
 
 .PHONY: collect-static
 collect-static:
-	poetry run python manage.py collectstatic
+	poetry run python manage.py collectstatic --no-input
