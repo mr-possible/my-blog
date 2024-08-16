@@ -78,7 +78,7 @@ jobs:
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_USERNAME,Value="${{ secrets.DB_USERNAME }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PASSWORD,Value="${{ secrets.DB_PASSWORD }}" \
               
-              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DJANGO_SECRET_KEY,Value="${{ secrets.AWS_ACCESS_KEY_FOR_BOTO_S3 }}" \                          
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DJANGO_SECRET_KEY,Value="${{ secrets.DJANGO_SECRET_KEY }}" \                          
                                
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=APP_ASSETS_S3_BUCKET_NAME,Value="${{ vars.APP_ASSETS_S3_BUCKET_NAME }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_REGION_NAME,Value="${{ vars.AWS_REGION_NAME }}" \
