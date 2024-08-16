@@ -124,3 +124,7 @@ dmypy.json
 
 # Built Visual Studio Code Extensions
 *.vsix
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

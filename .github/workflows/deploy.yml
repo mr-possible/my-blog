@@ -73,9 +73,7 @@ jobs:
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PORT,Value="${{ secrets.DB_PORT }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_USERNAME,Value="${{ secrets.DB_USERNAME }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PASSWORD,Value="${{ secrets.DB_PASSWORD }}" \
-              Namespace=aws:elasticbeanstalk:application:environment,OptionName=APP_ASSETS_S3_BUCKET_NAME,Value="${{ vars.APP_ASSETS_S3_BUCKET_NAME }}" \
-              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_S3_CUSTOM_DOMAIN,Value="${{ vars.AWS_S3_CUSTOM_DOMAIN }}"
-
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=APP_ASSETS_S3_BUCKET_NAME,Value="${{ vars.APP_ASSETS_S3_BUCKET_NAME }}"
 
       - name: Finish
         run: echo "CD part finished successfully"
