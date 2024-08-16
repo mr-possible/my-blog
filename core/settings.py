@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-alf!9kn$vm&yc$q)eopp!bsk*f*ejv#&pw$_wztmneuv3sas43"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'mr-possible.ap-south-1.elasticbeanstalk.com',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -129,11 +134,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
 
-AWS_STORAGE_BUCKET_NAME = "sambhav-blog-assets"
-AWS_S3_REGION = "ap-south-1"
-AWS_ACCESS_KEY_ID = "AKIAVRUVT52I6YCR5LIA"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+APP_ASSETS_S3_BUCKET_NAME = os.environ.get('APP_ASSETS_S3_BUCKET_NAME')
+AWS_S3_REGION = os.environ.get('AWS_S3_REGION')
+AWS_S3_CUSTOM_DOMAIN = f"{APP_ASSETS_S3_BUCKET_NAME}.s3.amazonaws.com"
 
 STATICFILES_FOLDER = "static"
 MEDIAFILES_FOLDER = "media"
