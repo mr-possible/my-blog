@@ -133,5 +133,14 @@ AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 STATICFILES_FOLDER = "static"
 MEDIAFILES_FOLDER = "media"
 
-STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
-DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+}
+
+# STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
+# DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
