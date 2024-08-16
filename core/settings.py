@@ -66,14 +66,21 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": getenv("DB_USERNAME"),
-        "PASSWORD": getenv("DB_PASSWORD"),
-        "HOST": getenv("DB_HOST"),
-        "PORT": getenv("DB_PORT"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "postgres",
+#         "USER": getenv("DB_USERNAME"),
+#         "PASSWORD": getenv("DB_PASSWORD"),
+#         "HOST": getenv("DB_HOST"),
+#         "PORT": getenv("DB_PORT"),
+#     }
+# }
 
 
 # Password validation
@@ -114,16 +121,14 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
 
-APP_ASSETS_S3_BUCKET_NAME = getenv("APP_ASSETS_S3_BUCKET_NAME")
-AWS_S3_CUSTOM_DOMAIN = f"{APP_ASSETS_S3_BUCKET_NAME}.s3.amazonaws.com"
+AWS_STORAGE_BUCKET_NAME = getenv("APP_ASSETS_S3_BUCKET_NAME")
+AWS_S3_REGION_NAME = getenv("AWS_REGION_NAME")
+AWS_ACCESS_KEY_ID = getenv("AWS_ACCESS_KEY_FOR_BOTO_S3")
+AWS_SECRET_ACCESS_KEY = getenv("AWS_SECRET_ACCESS_KEY_FOR_BOTO_S3")
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
 STATICFILES_FOLDER = "static"
 MEDIAFILES_FOLDER = "media"

@@ -67,13 +67,25 @@ jobs:
             --environment-name ${{ vars.EB_ENVIRONMENT_NAME }} \
             --version-label "${{ env.VERSION_NAME }}" \
             --option-settings \
-              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DJANGO_SECRET_KEY,Value="${{ secrets.DJANGO_SECRET_KEY }}" \
-              Namespace=aws:elasticbeanstalk:application:environment,OptionName=IS_DEVELOPMENT,Value="${{ vars.IS_DEVELOPMENT }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_ACCESS_KEY_ID,Value="${{ secrets.AWS_ACCESS_KEY_ID }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_SECRET_ACCESS_KEY,Value="${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_ACCESS_KEY_FOR_BOTO_S3,Value="${{ secrets.AWS_ACCESS_KEY_FOR_BOTO_S3 }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_SECRET_ACCESS_KEY_FOR_BOTO_S3,Value="${{ secrets.AWS_SECRET_ACCESS_KEY_FOR_BOTO_S3 }}" \
+              
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_HOST,Value="${{ secrets.DB_HOST }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PASSWORD,Value="${{ secrets.DB_PASSWORD }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PORT,Value="${{ secrets.DB_PORT }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_USERNAME,Value="${{ secrets.DB_USERNAME }}" \
               Namespace=aws:elasticbeanstalk:application:environment,OptionName=DB_PASSWORD,Value="${{ secrets.DB_PASSWORD }}" \
-              Namespace=aws:elasticbeanstalk:application:environment,OptionName=APP_ASSETS_S3_BUCKET_NAME,Value="${{ vars.APP_ASSETS_S3_BUCKET_NAME }}"
+              
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=DJANGO_SECRET_KEY,Value="${{ secrets.AWS_ACCESS_KEY_FOR_BOTO_S3 }}" \                          
+                               
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=APP_ASSETS_S3_BUCKET_NAME,Value="${{ vars.APP_ASSETS_S3_BUCKET_NAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=AWS_REGION_NAME,Value="${{ vars.AWS_REGION_NAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=EB_APPLICATION_NAME,Value="${{ vars.EB_APPLICATION_NAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=EB_ENVIRONMENT_NAME,Value="${{ vars.EB_ENVIRONMENT_NAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=EB_S3_BUCKET_NAME,Value="${{ vars.EB_S3_BUCKET_NAME }}" \
+              Namespace=aws:elasticbeanstalk:application:environment,OptionName=IS_DEVELOPMENT,Value="${{ vars.IS_DEVELOPMENT }}"          
 
       - name: Finish
         run: echo "CD part finished successfully"
