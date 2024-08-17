@@ -45,9 +45,6 @@ jobs:
       - name: Install dependencies (using Poetry)
         run: poetry install
 
-      - name: Run DB migrations
-        run: make migrate
-
       - name: Collect static files
         run: make collect-static
 
