@@ -63,14 +63,6 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -133,14 +125,14 @@ AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 STATICFILES_FOLDER = "static"
 MEDIAFILES_FOLDER = "media"
 
-# STORAGES = {
-#     "default": {
-#         "BACKEND": "storages.backends.s3.S3Storage",
-#     },
-#     "staticfiles": {
-#         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-#     },
-# }
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+}
 
-STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
-DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
+# STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
+# DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
