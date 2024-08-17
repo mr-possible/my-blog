@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
-django = "4.2"
+django = "4.2.15"
 markdown = "^3.6"
 pygments = "^2.18.0"
 pillow = "^10.4.0"
